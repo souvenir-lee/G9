@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title> 스탑워치/타이머 </title>
+  <link rel = "stylesheet" href="index.css" >
+</head>
+<body>
+  <div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'stopWatch')">스탑워치</button>
+    <button class="tablinks" onclick="openTab(event, 'timer')">타이머</button>
+  </div>
+
+  <!-- stopWatch : 0부터 시작하여 경과시간을 확인 -->
+  <div id="stopWatch" class="tabcontent"> 
+    <div>
+      <span id="postTestMin">00</span><!-- 분 -->
+      <span>:</span>
+      <span id="postTestSec">00</span><!--초-->
+      <span>.</span>
+      <span id="postTestMilisec">00</span><!--밀리초-->
+    </div>
+    <div>
+      <ul id="recordList"></ul><!--중간 기록할 리스트-->
+    </div>
+    <div>
+      <button id="startBtn">START</button><!--시작/재시작/기록 버튼-->
+      <button id="stopBtn">STOP</button><!--스톱 버튼-->
+    </div>
+  </div>
+
+
+ <!-- timer : 예상 소요시작 설정 -> 0에 도달하면 알람이 울림 -->
+ <div id="timer" class="tabcontent">
+  <h1 class = "js-timer__current"></h1>
+  <h1 class = "js-timer">00:00</h1>
+
+  <button class="js-timer__startBtn" onclick="startButton()" >시작</button>
+  <button class="js-timer__stopBtn" onclick="stopButton()">멈춤</button>
+  <button class="js-timer__clear" onclick="clearButton()">초기화</button>
+</div>
+
+  <script src="tab.js"></script>
+  <script src="stopWatch.js"></script>
+  <script src="timer.js"></script>
+</body>
+</html>
