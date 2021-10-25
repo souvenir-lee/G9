@@ -1,4 +1,16 @@
 import React from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+
+import styled from 'styled-components'
+const Close = styled.button`
+  float: right;
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  color: gray;
+  align-items: center;
+`;
 
 class TodoListItem extends React.Component {
   constructor(props) {
@@ -15,16 +27,15 @@ class TodoListItem extends React.Component {
     this.props.markTodoDone(index);
   }
   render() {
-    var todoClass = this.props.item.done ?
-      "done" : "undone";
+    let todoClass = this.props.item.done ? "done" : "undone";
     return (
-      <li className="list-group-item ">
+      <li className="list-group-item">
         <div className={todoClass}>
-          <span className="glyphicon glyphicon-ok icon" aria-hidden="true" onClick={this.onClickDone}></span>
+          <FontAwesomeIcon icon={faCheck} onClick={this.onClickDone} className="icon"></FontAwesomeIcon>
           {this.props.item.value}
-          <button type="button" className="close" onClick={this.onClickClose}>&times;</button>
+          <Close type="button" onClick={this.onClickClose}>&times;</Close>
         </div>
-      </li>
+      </li >
     );
   }
 }

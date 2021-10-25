@@ -1,4 +1,13 @@
 import React from "react";
+import styled from 'styled-components'
+
+const FormControl = styled.input`
+  width: 50%;
+  margin-left: 80px;
+`;
+const AddButton = styled.button`
+  width: 10%;
+`
 
 class TodoForm extends React.Component {
   constructor(props) {
@@ -19,9 +28,9 @@ class TodoForm extends React.Component {
   }
   render() {
     return (
-      <form ref="form" onSubmit={this.onSubmit} className="form-inline">
-        <input type="text" ref="itemName" className="form-control" placeholder="add a new todo..." />
-        <button type="submit" className="btn btn-default">Add</button>
+      <form ref="form" onSubmit={this.onSubmit}>
+        <FormControl type="text" ref="itemName" className="form-control" placeholder="할 일을 적어주세요" />
+        <AddButton type="submit">추가</AddButton>
       </form>
     );
   }

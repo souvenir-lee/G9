@@ -8,6 +8,9 @@ import TodoForm from './TodoForm'
 class App extends React.Component {
   constructor(props) {
     super();
+    this.addItem = this.addItem.bind(this);
+    this.removeItem = this.removeItem.bind(this);
+    this.markTodoDone = this.markTodoDone.bind(this);
     this.state = {
       todoItems: [
         { index: 1, value: "learn react", done: false },
@@ -17,13 +20,33 @@ class App extends React.Component {
     }
   }
 
+  addItem(todoItem) {
+    this.state.todoItems.unshift({
+      index: this.state.todoItems.length + 1,
+      value: todoItem.newItemValue,
+      done: false
+    });
+    this.setState({ todoItems: this.state.todoItems });
+  }
+  removeItem(itemIndex) {
+    this.state.todoItems.splice(itemIndex, 1);
+    this.setState({ todoItems: this.state.todoItems });
+  }
+  markTodoDone(itemIndex) {
+    var todo = this.state.todoItems[itemIndex];
+    this.state.todoItems.splice(itemIndex, 1);
+    todo.done = !todo.done;
+    todo.done ? this.state.todoItems.push(todo) : this.state.todoItems.unshift(todo);
+    this.setState({ todoItems: this.state.todoItems });
+  }
+
   render() {
     return (
-      <>
+      <div id="main">
         <TodoHeader />
-        <TodoList items={this.props.initItems} removeItem={this.removeItem} markTodoDone={this.markTodoDone} />
-        <TodoForm addItem={this.addItem} />
-      </>
+        <TodoList className="list-group" items={this.state.todoItems} removeItem={this.removeItem} markTodoDone={this.markTodoDone} />
+        <TodoForm className="form-inline" addItem={this.addItem} />
+      </div>
     )
   }
 }
