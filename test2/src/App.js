@@ -1,25 +1,31 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
+import React from "react";
 import './App.css';
+import TodoHeader from './TodoHeader'
+import TodoList from './TodoList'
+import TodoForm from './TodoForm'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super();
+    this.state = {
+      todoItems: [
+        { index: 1, value: "learn react", done: false },
+        { index: 2, value: "Go shopping", done: true },
+        { index: 3, value: "buy flowers", done: true }
+      ]
+    }
+  }
+
+  render() {
+    return (
+      <>
+        <TodoHeader />
+        <TodoList items={this.props.initItems} removeItem={this.removeItem} markTodoDone={this.markTodoDone} />
+        <TodoForm addItem={this.addItem} />
+      </>
+    )
+  }
 }
 
 export default App;
